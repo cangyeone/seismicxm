@@ -250,7 +250,7 @@ class PRIMEDP(nn.Module):
         #event_type = self.decoder_event_type(hidden_einfo[:, :, 3])
         #event_mag = self.decoder_event_mag(hidden_einfo[:, :, 4]).sigmoid()*12 - 2
         #event_delta = self.decoder_event_delta(hidden_einfo[:, :, 5]).sigmoid() * 20
-        return phase, polar, event_type, wave, 0, hidden_wave, event_pos_x#, event_pos_z, event_mag, event_delta
+        return phase, polar, event_type, wave, hidden 
 
 
 class Loss(nn.Module):

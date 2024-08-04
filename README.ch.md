@@ -12,4 +12,17 @@
 |大模型|1.3B|ckpt/primedp.large.pt|训练中|
 
 ### 1. 使用方式
+```Python 
+from prime.middle import PRIMEDP 
+import torch 
 
+model = PRIMEDP() 
+#加载预训练模型
+model.load_state_dict(torch.load("ckpt/primedp.middle.pt"))
+#输入波形
+x = torch.randn([32, 3, 10240])# N, C, T顺序
+# 震相, 初动, 地震类型, 波形, 波形特征向量
+phase, polar, event_type, wave, hidden = model(x) 
+# 可以用于其他处理
+# TO:比如使用hidden用于聚类分析
+```
