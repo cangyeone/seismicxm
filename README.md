@@ -70,3 +70,6 @@ y = decoder(vector)
 
 ### 3. 联系方式
 有任何方式可以联系：cangye@hotmail.com 
+
+### LICENSE 
+[GPLv3](LICENSE)
