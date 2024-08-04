@@ -4,8 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec 
 import torch 
-from utils.large7 import DataLarge9
-from models.EQLarge9 import EQLargeCNN as Model
+from prime.middle import PRIMEDP 
 plt.switch_backend('agg')
 plt.rcParams['figure.figsize'] = (16, 12)
 plt.rcParams['figure.dpi'] = 150

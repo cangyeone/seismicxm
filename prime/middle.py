@@ -194,7 +194,7 @@ class BRNNIN(nn.Module):
         y = y.permute(0, 2, 1)
         return y 
 import torch.nn.functional as F 
-class EQLargeCNN(nn.Module):
+class PRIMEDP(nn.Module):
     def __init__(self):
         super().__init__()
         n_stride = 512
