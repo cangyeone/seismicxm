@@ -1,47 +1,51 @@
-### PRIME地震数据处理模型
-我们的模型主要是基于Transformer的，使用Transformer来处理波形的特征。
-![structure of PRIME-DP](fig/structure.png)
+### PRIME-DP: Pre-trained Integrated Model for Earthquake Data Processing
+Our model is based on Transformer. And is mainly used to get seismic wave repersation. 
+![structure of PRIME-DP](fig/structure.en.png)
 
-当前有几个模型
-|模型名称|可训练参数数量|模型地址|状态|
+Here are five models:
+
+|Name|Number of parameters|path|status|
 |:-:|:-:|:-:|:-:|
-|RNN版模型|77M|ckpt/primedp.rnn.pt|发布|
-|Picker模型|0.5M|ckpt/primedp.picker.pt|发布|
-|小模型|8.6M|ckpt/primedp.tinny.pt|发布|
-|中模型|51M|ckpt/primedp.middle.pt|发布|
-|大模型|1.3B|ckpt/primedp.large.pt|训练中|
+|RNN model|77M|ckpt/primedp.rnn.pt|released|
+|Picker model|0.5M|ckpt/primedp.picker.pt|released|
+|Tinny model|8.6M|ckpt/primedp.tinny.pt|released|
+|Middle model|51M|ckpt/primedp.middle.pt|released|
+|Event classification model based on middle|51M|ckpt/primedp.middle.classification.pt|released|
+|Large model|1.3B|ckpt/primedp.large.pt|training|
 
-### 1. 使用方式
+### 1. Usage
 ```Python 
 from prime.middle import PRIMEDP 
 import torch 
 
 model = PRIMEDP() 
-#加载预训练模型
+# load pretrained model 
 model.load_state_dict(torch.load("ckpt/primedp.middle.pt"))
-#输入波形
+# model input 
 x = torch.randn([32, 3, 10240])# N, C, T顺序
-# 震相, 初动, 地震类型, 波形, 波形特征向量
+# phase, polarity, event type, waveform, featrue vector 
 phase, polar, event_type, wave, hidden = model(x) 
-# 可以用于其他处理
-# TO:比如使用hidden用于聚类分析
+# can be used for other tasks. 
 ```
 
-### 2. 迁移学习
-以分类工作为例：
+### 2. Transfer learning 
+Take event classification as example: 
 ```Python 
-# 定义可训练部分
+# define the trainig parameters 
 for key, var in model.named_parameters():
     if var.dtype != torch.float32:continue # BN统计计数无梯度
     if "decoder_event_type" in key: # 仅有最后一层有out
         var.requires_grad = True
     else:
         var.requires_grad = False  
-# 定义训练器    
+# define the optimizer 
 optim = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), 1e-3, weight_decay=1e-1)
 ```
 
-也可以使用特征来进行分类：
+the weights "ckpt\primedp.middel.classification.pt" are trained by NeiMeng data by transfer learning. 
+
+
+Here is another way to build classification model based on pre-trained work. 
 ```Python 
 import torch.nn as nn 
 
