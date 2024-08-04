@@ -33,8 +33,8 @@ Take event classification as example:
 ```Python 
 # define the trainig parameters 
 for key, var in model.named_parameters():
-    if var.dtype != torch.float32:continue # BN统计计数无梯度
-    if "decoder_event_type" in key: # 仅有最后一层有out
+    if var.dtype != torch.float32:continue # BN layers
+    if "decoder_event_type" in key: # classification decoder 
         var.requires_grad = True
     else:
         var.requires_grad = False  
@@ -62,14 +62,14 @@ x = torch.randn([32, 3, 10240])# N, C, T format.
 phase, polar, event_type, wave, hidden = model(x) 
 
 decoder = Classification() 
-vector = hidden[:, :, 0]#选择第0个输出，也可以使用其他输出
+vector = hidden[:, :, 0]#selected the first feature vecotr. 
 vector = vector.detach() 
 y = decoder(vector) 
-# TODO:定义损失函数并对decoder进行训练即可。
+# TODO: define lossfunction and start to train. 
 ```
 
-### 3. 联系方式
-有任何方式可以联系：cangye@hotmail.com 
+### 3. Contact
+Yuqi Cai: caiyuqiming@foxmail.com 
 
 ### LICENSE 
 [GPLv3](LICENSE)
