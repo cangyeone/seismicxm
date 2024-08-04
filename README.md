@@ -68,7 +68,20 @@ y = decoder(vector)
 # TODO: define lossfunction and start to train. 
 ```
 
-### 3. Contact
+### 3. More tasks in PRIME
+
+User can manunally defiend task ID. 
+```Python
+model = PRIMEDP() 
+model.load_state_dict(torch.load("ckpt/primedp.middle.pt"))
+# Multi-task ID, 0 event classification, 1 single station location. 
+task_id = torch.Tensor([2, 0, 1], dtype=torch.long) 
+x = torch.randn([32, 3, 10240])# N, C, T format. 
+vect_task, vect_wave = model(x, task_id) 
+vect_task=...#Many other task 
+```
+
+### 4. Contact
 Yuqi Cai: caiyuqiming@foxmail.com 
 
 ### LICENSE 
