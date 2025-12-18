@@ -4,6 +4,11 @@
 
 # SeismicXM: A Cross-Task Foundation Model for Single-Station Seismic Waveform Processing
 
+**Code for:** 
+* **Title:** *SeismicXM: A Cross-Task Foundation Model for Single-Station Seismic Waveform Processing* 
+* **Authors:** Yuqi Cai, Ziye Yu, et al. ([yuziye@cea-igp.ac.cn](mailto:yuziye@cea-igp.ac.cn)) 
+
+
 SeismicXM is a Transformer-based, cross-task foundation model for **single-station** seismic waveform processing.
 It is designed to learn general-purpose seismic representations from large-scale waveform data and to support multiple
 downstream tasks in a unified framework, including:
