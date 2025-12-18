@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="fig/logo.png" alt="SeismicXM logo" width="220"/>
+  <img src="fig/logo.png" alt="SeismicXM logo"/>
 </p>
 
 # SeismicXM: A Cross-Task Foundation Model for Single-Station Seismic Waveform Processing
