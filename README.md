@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="fig/logo.png" alt="SeismicXM logo" width="220"/>
+</p>
+
 # SeismicXM: A Cross-Task Foundation Model for Single-Station Seismic Waveform Processing
 
 SeismicXM is a Transformer-based, cross-task foundation model for **single-station** seismic waveform processing.
@@ -14,7 +18,7 @@ downstream tasks in a unified framework, including:
 > The project name has been updated from **PRIME-DP** to **SeismicXM** (paper accepted).
 > For backward compatibility, some module/class names and checkpoint filenames may still keep the `primedp.*` prefix.
 
----
+
 
 ## Available Pre-trained Models
 
@@ -103,7 +107,7 @@ y = decoder(vector)
 # TODO: define loss function and train
 ```
 
----
+
 
 ## 3. More Tasks in SeismicXM
 
@@ -128,13 +132,11 @@ vect_task, vect_wave = model(x, task_id)
 vect_task = ...  # task-specific outputs
 ```
 
----
 
 ## 4. Contact
 
 Yuqi Cai: [caiyuqiming@foxmail.com](mailto:caiyuqiming@foxmail.com)
 
----
 
 ## License & Commercial Use
 
