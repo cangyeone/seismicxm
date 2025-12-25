@@ -56,7 +56,7 @@ class Model(Model2):
 
 def main(args):
     version = "04b"
-    model_name = f"ckpt_large/pprimedp.middle.classification.pt" #保存和加载神经网络模型权重的文件路径
+    model_name = "ckpt_large/seismicxm.middle.classification.pt"  # 保存和加载神经网络模型权重的文件路径
     model = Model()
     model.load_state_dict(torch.load(model_name, map_location="cpu"))
     torch.jit.save(torch.jit.script(model), f"picker/largev9.jit")  
