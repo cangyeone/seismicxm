@@ -140,6 +140,8 @@ This repository provides pretrained and fine-tuned models for seismic phase pick
 
 Models differ in training strategy, dataset domain, class balancing, and number of training iterations.
 
+> Checkpoints can be downloaded from Google Drive: https://drive.google.com/drive/folders/12cKctQFGZg4kqRQqMhdq1VGcDOYqUafG?usp=sharing
+
 ### Naming Convention
 
 ```

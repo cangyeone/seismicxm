@@ -1,24 +1,27 @@
-### PRIME地震数据处理模型
+### SeismicXM（原PRIME-DP）地震数据处理模型
 我们的模型主要是基于Transformer的，使用Transformer来处理波形的特征。
 ![structure of PRIME-DP](fig/structure.png)
 
 当前有几个模型
 |模型名称|可训练参数数量|模型地址|状态|
 |:-:|:-:|:-:|:-:|
-|RNN版模型|77M|ckpt/primedp.rnn.pt|发布|
-|Picker模型|0.5M|ckpt/primedp.picker.pt|发布|
-|小模型|8.6M|ckpt/primedp.tinny.pt|发布|
-|中模型|51M|ckpt/primedp.middle.pt|发布|
-|大模型|1.3B|ckpt/primedp.large.pt|训练中|
+|RNN版模型|77M|ckpt/seismicxm.rnn.pt|发布|
+|Picker模型|0.5M|ckpt/seismicxm.picker.pt|发布|
+|小模型|8.6M|ckpt/seismicxm.tinny.pt|发布|
+|中模型|51M|ckpt/seismicxm.middle.pt|发布|
+|中模型（分类迁移版）|51M|ckpt/seismicxm.middle.classification.pt|发布|
+|大模型|1.3B|ckpt/seismicxm.large.pt|训练中|
+
+> 模型下载地址：https://drive.google.com/drive/folders/12cKctQFGZg4kqRQqMhdq1VGcDOYqUafG?usp=sharing
 
 ### 1. 使用方式
 ```Python 
-from prime.middle import PRIMEDP 
+from seismicxm.middle import SeismicXM 
 import torch 
 
-model = PRIMEDP() 
+model = SeismicXM() 
 #加载预训练模型
-model.load_state_dict(torch.load("ckpt/primedp.middle.pt"))
+model.load_state_dict(torch.load("ckpt/seismicxm.middle.pt"))
 #输入波形
 x = torch.randn([32, 3, 10240])# N, C, T顺序
 # 震相, 初动, 地震类型, 波形, 波形特征向量
@@ -40,7 +43,7 @@ for key, var in model.named_parameters():
 # 定义训练器    
 optim = torch.optim.Adam(filter(lambda p: p.requires_grad, model.parameters()), 1e-3, weight_decay=1e-1)
 ```
-"ckpt\primedp.middel.classification.pt"用内蒙数据迁移训练的。
+"ckpt\\seismicxm.middle.classification.pt"用内蒙数据迁移训练的。
 
 也可以使用特征来进行分类：
 ```Python 
@@ -53,8 +56,8 @@ class Classification(nn.Module):
     def forward(self, x):
         y = self.decoder(x) 
         return y 
-model = PRIMEDP() 
-model.load_state_dict(torch.load("ckpt/primedp.middle.pt"))
+model = SeismicXM() 
+model.load_state_dict(torch.load("ckpt/seismicxm.middle.pt"))
 x = torch.randn([32, 3, 10240])# N, C, T format. 
 phase, polar, event_type, wave, hidden = model(x) 
 
