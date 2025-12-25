@@ -152,7 +152,7 @@ Models differ in training strategy, dataset domain, class balancing, and number 
 
   * `original` – trained from scratch
   * `transfer` – fine-tuned from a pretrained base model
-  * `seismicxm.base` – general-purpose foundation model
+  * `seismicxm.middle` – general-purpose foundation model
   * `nowave` – ablation model without waveform information
 
 * **domain**
@@ -208,7 +208,7 @@ XGBoost models are typically used in **two-stage pipelines**, where SeismicXM en
   → `model.all.jit`
 
 * **New region / station network**
-  → `seismicxm.base.pt` + transfer learning
+  → `seismicxm.middle.pt` + transfer learning
 
 * **PNW applications**
   → `transfer.pnw.balanced.200.pt`
