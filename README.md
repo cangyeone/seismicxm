@@ -221,6 +221,14 @@ XGBoost models are typically used in **two-stage pipelines**, where SeismicXM en
 
 ---
 
+## 7. Experiment Scripts
+
+Legacy experiment and analysis scripts (file names prefixed with **A***, **B***, **C***, **D***, and **E***), including data preparation, model comparison, and JIT export utilities, are now organized under the **`script/`** directory.
+
+> Example: `python script/A.compare.matrix.py`
+
+---
+
 ## Contact
 
 * **Yuqi Cai:** [caiyuqiming@foxmail.com](mailto:caiyuqiming@foxmail.com)
